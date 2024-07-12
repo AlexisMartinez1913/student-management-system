@@ -5,6 +5,8 @@ import jagarcia.student.sms.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -31,6 +33,12 @@ public class StudentController {
         StudentDto studentDto = new StudentDto();
         model.addAttribute("student", studentDto);
         return "create_student";
+    }
+    //handler method to handle save student form submit request
+    @PostMapping("/students")
+    public String saveStudent(@ModelAttribute("student") StudentDto student) {
+        studentService.createStudent(student);
+        return "redirect:/students";
     }
 
 
