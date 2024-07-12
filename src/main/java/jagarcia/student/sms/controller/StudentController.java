@@ -51,7 +51,7 @@ public class StudentController {
         return "redirect:/students";
     }
 
-    //handler method to hanlde edit student request
+    //handler method to hanlde take id from form student request
     @GetMapping("/students/{studentId}/edit")
     public String editStudent(@PathVariable("studentId") Long studentId,
                               Model model) {
@@ -73,6 +73,13 @@ public class StudentController {
         }
         studentDto.setId(studentId);
         studentService.updateService(studentDto);
+        return "redirect:/students";
+    }
+
+    //handler method to handle DELETE student request
+    @GetMapping("/students/{studentId}/delete")
+    public String deleteStudent(@PathVariable("studentId") Long studentId) {
+        studentService.deleteStudent(studentId);
         return "redirect:/students";
     }
 
